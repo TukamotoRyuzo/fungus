@@ -399,8 +399,11 @@ namespace Fungus
                     return objectValue;
                 }
                 else if (objType.IsEnum())
-                    return System.Enum.ToObject(objType, intValue);
-
+                {
+                    var enumNames = Enum.GetNames(objType); 
+                    var enumName = enumNames[intValue];
+                    return System.Enum.Parse(objType, enumName);
+                }
                 break;
             }
 
